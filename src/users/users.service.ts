@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { randomUUID } from 'crypto';
 import { CreateUserDto } from './dto/createUserDto';
 import { UpdatesUserDto } from './dto/updatesUserDto.dto';
 import { User } from './schemas/user.schema';
@@ -19,7 +18,6 @@ export class UsersService {
 
   async createUser(user: CreateUserDto): Promise<User> {
     const candidate: User = {
-      userId: randomUUID(),
       email: user.email,
       password: user.password,
     };

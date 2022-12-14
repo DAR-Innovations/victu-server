@@ -4,7 +4,7 @@ import { UpdatesUserDto } from './dto/updatesUserDto.dto';
 import { User } from './schemas/user.schema';
 import { UsersService } from './users.service';
 
-@Controller('/api/v1/users')
+@Controller('/v1/users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
