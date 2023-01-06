@@ -2,7 +2,7 @@ import { MongooseModule, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 import { Gender } from 'src/shared/types/gender.enum';
 
-export type UserDocument = HydratedDocument<Program>;
+export type ProgramDocument = HydratedDocument<Program>;
 
 export class Program {
   age: number;
