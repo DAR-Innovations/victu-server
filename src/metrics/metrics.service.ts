@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Metrics, MetricaDocument } from './schemas/metrica.schema';
-import { Model } from 'mongoose';
+import { Document, Model } from 'mongoose';
 import { CreateMetricaDto } from './dto/create-metrica.dto';
 import { UsersService } from 'src/users/users.service';
 import { ActivityService } from 'src/activity/activity.service';
@@ -23,6 +23,13 @@ export class MetricsService {
   ) {}
 
   async createMetrica(dto: CreateMetricaDto) {
+    const existedMetrica: MetricaDocument = await this.getMetricaByUserId(
+      dto.userId,
+    );
+    if (existedMetrica) {
+      await this.metricaModel.deleteOne({ id: existedMetrica.id });
+    }
+
     const sd = new Date(dto.startDate);
     const fd = new Date(dto.finishDate);
     const activity = await this.activityService.getActivityById(dto.activityId);
@@ -106,7 +113,7 @@ export class MetricsService {
       );
     }
 
-    return candidate.metrics;
+    return candidate.metrics as MetricaDocument;
   }
 
   async deleteMetricaById(id: string) {
