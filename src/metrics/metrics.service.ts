@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Metrics, MetricaDocument } from './schemas/metrica.schema';
-import { Document, Model } from 'mongoose';
+import { Model } from 'mongoose';
 import { CreateMetricaDto } from './dto/create-metrica.dto';
 import { UsersService } from 'src/users/users.service';
 import { ActivityService } from 'src/activity/activity.service';
